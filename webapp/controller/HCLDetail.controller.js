@@ -1,9 +1,10 @@
 sap.ui.define([
 	"./BaseController",
 	"../utils/formatter",
-	"sap/ui/export/library"
+	"sap/ui/export/library",
+	"sap/ui/model/json/JSONModel",
 ],
-	function (BaseController, formatter, exportLibrary) {
+	function (BaseController, formatter, exportLibrary, JSONModel) {
 		"use strict";
 		const EdmType = exportLibrary.EdmType;
 		return BaseController.extend("com.zeffortcalculatorhcl.controller.HCLDetail", {
@@ -50,6 +51,28 @@ sap.ui.define([
 					OpportunityId: this.getOwnerModel("oModelEstCal").getProperty("/OpportunityId")
 				}, false);
 			},
+
+			/******** Input Output Excel Download  *********/ 
+			onInputOutputExport: function(){
+				let sFileName = "Input Output";
+				let oJsData = this.getOwnerModel("oModelEstCal").getData();
+				let sUrl = `${this.getOwnerModel().sServiceUrl}/zi_hcl_header?$filter=CustId eq '${oJsData.CustId}' and OpportunityId eq '${oJsData.OpportunityId}' and Version eq '${oJsData.Version}'`;
+				let oRowBinding = {
+					type: "odata",
+					dataUrl: sUrl,
+					serviceUrl: this.getOwnerModel().sServiceUrl,
+					useBatch: true,
+				}
+				let aCols = [
+					{
+						label: 'Source System DB Size (TB)',
+						property: 'SsDbSize',
+						type: EdmType.String
+					}
+				];
+
+				this.onCommonExport(oRowBinding, aCols, sFileName);
+			},
 			/******** Platform Effort Excel Download  *********/ 
 			onPlatformEffortsExport: function () {
 				let sFileName = "Platform Efforts";
@@ -90,7 +113,78 @@ sap.ui.define([
 						label: 'Effort Calculator',
 						property: 'EffType',
 						type: EdmType.String
+					},
+					{
+						label: 'Total Effort in Days',
+						property: 'TotEffD',
+						type: EdmType.Number,
+						scale: 0,
+						delimiter: true
+					},
+					{
+						label: 'L4',
+						property: 'L4ManMnth',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L3',
+						property: 'L3ManMnth',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L2',
+						property: 'L2ManMnth',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L1',
+						property: 'L1ManMnth',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Total Effort in Hours',
+						property: 'TotEffH',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L4',
+						property: 'L4ManHr',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L3',
+						property: 'L3ManHr',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L2',
+						property: 'L2ManHr',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'L1',
+						property: 'L1ManHr',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
 					}
+
 				];
 
 				this.onCommonExport(oRowBinding, aCols, sFileName);
@@ -105,14 +199,115 @@ sap.ui.define([
 						label: 'Skill',
 						property: 'EffType',
 						type: EdmType.String
-					}
+					},
+					{
+						label: 'Level',
+						property: 'EcLevel',
+						type: EdmType.String
+					},
+					{
+						label: 'Level',
+						property: 'EcLevel',
+						type: EdmType.String
+					},
+					{
+						label: 'Month 1',
+						property: 'Ec1',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 2',
+						property: 'Ec2',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 3',
+						property: 'Ec3',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 4',
+						property: 'Ec4',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 5',
+						property: 'Ec5',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 6',
+						property: 'Ec6',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 7',
+						property: 'Ec7',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 8',
+						property: 'Ec8',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 9',
+						property: 'Ec1',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 10',
+						property: 'Ec10',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 11',
+						property: 'Ec11',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Month 12',
+						property: 'Ec12',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+					{
+						label: 'Sum',
+						property: 'EcSum',
+						type: EdmType.Number,
+						scale: 2,
+						delimiter: true
+					},
+
 					
 
 				];
 
 				this.onCommonExport(oRowBinding, aCols, sFileName);
 			},
-
 			/******** Package Detail Excel Download  *********/ 
 			onWorkPackageDetailsExport: function() {
 				let sFileName = "Work Package Additional Details";
@@ -232,7 +427,6 @@ sap.ui.define([
 					
 
 				];
-
 				this.onCommonExport(oRowBinding, aCols, sFileName);
 			}
 

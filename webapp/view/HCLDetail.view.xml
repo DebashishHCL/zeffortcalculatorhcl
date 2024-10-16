@@ -12,7 +12,7 @@
 			<l:Grid defaultSpan="L12 M7 S12" width="auto">
 				<l:content>
 					<VBox class="sapUiSmallMargin" width="auto">
-					<f:SimpleForm  layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" visible="true">
+					<f:SimpleForm id="foutp"  layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" visible="true">
 						<f:content>
 							<Label text="Customer ID" design="Bold"/>
 							<Text text="{oModelEstCal>/CustId}" />
@@ -72,6 +72,10 @@
 
 									<Label text="Comments" design="Bold" />
 									<Text text="{oModelEstCal>/Comments}"/>
+
+									<Label text="Download" design="Bold" />
+									<Button icon="sap-icon://excel-attachment" press=".onInputOutputExport"/>
+
 								</f:content>
 							</f:SimpleForm>
 						</VBox>
