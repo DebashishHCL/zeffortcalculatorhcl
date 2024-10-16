@@ -57,6 +57,16 @@ sap.ui.define([
                             console.log(oError);
                         }
                     });
+
+                    // Get the Lables from Backend
+                    this.getModel().read("/zi_hcl_labels", {
+                        success: (oData) => {
+                            this.setModel( models.getlabelsPageWise(oData), "remotei18n" );     /*  Dataset model for Remote Level of the application */
+                        },
+                        error: (oError) => {
+                            console.log(oError);
+                        }
+                    });
                 });
 
                 let oUserModel = new JSONModel();

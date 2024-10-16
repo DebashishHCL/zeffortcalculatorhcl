@@ -4,10 +4,13 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"../utils/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, CoreLib, History, formatter, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/ui/export/Spreadsheet",
+	"sap/ui/export/library",
+], function (Controller, CoreLib, History, formatter, Filter, FilterOperator, Spreadsheet) {
 	"use strict";
 	const { BusyIndicator } = CoreLib;
+	//const { Spreadsheet } = exportLibrary;
 	return Controller.extend("com.zeffortcalculatorhcl.controller.BaseController", {
 		formatter: formatter,
 		getRouter: function () {
@@ -129,5 +132,36 @@ sap.ui.define([
 				});
 			}
 		},
+
+		onCommonExport: function(oRowBinding, aCols, sFileName){
+
+			//oTable = this._oTable;
+			//let oRowBinding = oTable.getBinding('items');
+
+			let oSettings = {
+				workbook: {
+					columns: aCols,
+					hierarchyLevel: 'Level',
+					context :{
+						sheetName: sFileName
+					}
+				},
+				dataSource: oRowBinding,
+				fileName: sFileName + '.xlsx',
+				//worker: false // We need to disable worker because we are using a MockServer as OData Service
+			};
+
+			let oSheet = new Spreadsheet(oSettings);
+			oSheet.build()
+			.then(()=>{
+				console.log("Successfull");
+				oSheet.destroy();
+			})
+			.catch((sMessage)=>{
+				console.log(sMessage);
+			});
+
+
+		}
 	});
 });

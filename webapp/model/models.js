@@ -21,7 +21,7 @@ sap.ui.define([
                 oEntityTypes.forEach(element => {
                     if (element.name == "zi_hcl_headerType") {
                         element.property.forEach(value => {
-                            oModelEstCal[value.name] = "";      
+                            oModelEstCal[value.name] = "";
                         })
 
                         if (Array.isArray(element.navigationProperty)) {
@@ -48,7 +48,36 @@ sap.ui.define([
                 });
                 return new JSONModel(oModelSelectedBaseLine);
             },
-           
+
+            getlabelsPageWise: function (oData) {
+                let aPages = [];
+                let aFieldIds = []
+                oData.results.forEach(item => {
+                    switch (item.PageId) {
+                        case "DO":
+                            aFieldIds[item.FieldId] = item.Description;
+                            aPages["DO"] = aFieldIds;
+                            break;
+                        case "DP":
+                            aFieldIds[item.FieldId] = item.Description;
+                            aPages["DP"] = aFieldIds;
+                            break;
+                        case "WP":
+                            aFieldIds[item.FieldId] = item.Description;
+                            aPages["WP"] = aFieldIds;
+                            break;
+                        case "S":
+                            aFieldIds[item.FieldId] = item.Description;
+                            aPages["S"] = aFieldIds;
+                            break;
+
+                        default:
+                            break;
+                    }
+                });
+                return new JSONModel(aPages);
+
+            }
         };
 
     });

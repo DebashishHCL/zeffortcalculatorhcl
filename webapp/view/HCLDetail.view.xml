@@ -78,7 +78,7 @@
 					</IconTabFilter>
 					<IconTabFilter text="Effort Calculation">
 						<VBox>
-							<Table	inset="true"  alternateRowColors="true" id="hclPriceCal" items="{oModelEstCal>/to_PlatformEffort/results}" >
+							<Table id="tbEffortCalculation"	inset="true"  alternateRowColors="true" items="{oModelEstCal>/to_PlatformEffort/results}" >
 								<headerToolbar >
 									<OverflowToolbar >
 										<content >
@@ -90,7 +90,7 @@
 											</RadioButtonGroup>
 											<Label text="Resource View" />
 											<Switch type="AcceptReject"  change=".onSwitchChange"  />
-										
+											<Button icon="sap-icon://excel-attachment" press=".onEffortCalculationExport"/>
 										</content>
 									</OverflowToolbar>
 								</headerToolbar>
@@ -134,12 +134,13 @@
 					</IconTabFilter>
 					<IconTabFilter text="Platform Efforts" >
 						<VBox  class="">
-							<Table	inset="true" alternateRowColors="true" items="{oModelEstCal>/to_PlatformEffortHD/results}">
+							<Table id="tbPlatformEfforts" inset="true" alternateRowColors="true" items="{oModelEstCal>/to_PlatformEffortHD/results}">
 								<headerToolbar>
 									<OverflowToolbar>
 										<content>
 											<Title text="Platform Efforts" level="H2" wrapping="true"/>
 											<ToolbarSpacer />
+											<Button icon="sap-icon://excel-attachment" press=".onPlatformEffortsExport"/>
 										</content>
 									</OverflowToolbar>
 								</headerToolbar>
@@ -169,10 +170,12 @@
 					</IconTabFilter>					
 					<IconTabFilter text="{ path: 'oModelEstCal>/OppType', formatter: '.formatter.getWorkpackage' }">
 						<VBox>
-							<m:Table rows="{oModelEstCal>/to_ResourceEff/results}" ariaLabelledBy="title" selectionMode="None" >
+							<m:Table id="tbResourceloading" rows="{oModelEstCal>/to_ResourceEff/results}" ariaLabelledBy="title" selectionMode="None" >
 									<m:extension>
 										<OverflowToolbar style="Clear">
 											<Title  text="{i18n>tabtitle}" wrapping="true"/>
+											<ToolbarSpacer />
+										<Button icon="sap-icon://excel-attachment" press=".onResourceloadingExport"/>
 										</OverflowToolbar>
 									</m:extension>
 									<m:columns class="sapUiSmallMarginTop">
@@ -352,11 +355,13 @@
 					</IconTabFilter>
 					<IconTabFilter text="Work Package Additional Details">
 						<VBox  class="">
-							<m:Table id="table1" ariaLabelledBy="title"  selectionMode="None" rows="{oModelEstCal>/to_TotalEffort/results}"
+							<m:Table id="tbWorkPackageDetails" ariaLabelledBy="title"  selectionMode="None" rows="{oModelEstCal>/to_TotalEffort/results}"
 								enableColumnFreeze="false">
 								<m:extension>
 									<OverflowToolbar style="Clear">
 										<Title id="title" text="{ path: 'oModelEstCal>/OppType', formatter: '.formatter.getWorkpackage' }"/>
+										<ToolbarSpacer />
+										<Button icon="sap-icon://excel-attachment" press=".onWorkPackageDetailsExport"/>
 									</OverflowToolbar>
 								</m:extension>
 								<m:columns>

@@ -10,11 +10,14 @@ sap.ui.define([
 	"sap/m/Label",
 	"sap/m/Text",
 	"sap/m/ColumnListItem",
-	"sap/m/Column"
+	//"sap/m/Column",
+	"sap/ui/export/library"
 ],
-	function (BaseController, JSONModel, CoreLib, Filter, FilterOperator, SearchField, MessageToast, Column, Label, Text, ColumnListItem) {
+	function (BaseController, JSONModel, CoreLib, Filter, FilterOperator, SearchField, MessageToast, Column, Label, Text, ColumnListItem, exportLibrary) {
 		"use strict";
 		const { BusyIndicator } = CoreLib;
+		const EdmType = exportLibrary.EdmType;
+
 		return BaseController.extend("com.zeffortcalculatorhcl.controller.Search", {
 			onInit: function () {
 				this.getView().addEventDelegate({
@@ -302,7 +305,54 @@ sap.ui.define([
 
 			onNavBack: function () {
 				this.getRouter().navTo("Home", {}, false);
+			},
+
+			onSearchResultExport: function () {
+				let sFileName = "Search Results";
+				let oTable = this.getView().byId('tbCustomer');
+				let oRowBinding = oTable.getBinding('items');
+				let aCols = [
+					{
+						label: 'Customer ID',
+						property: 'CustId',
+						type: EdmType.String
+					},
+					{
+						label: 'Opportunity ID',
+						type: EdmType.String,
+						property: 'OpportunityId',
+						scale: 0
+					},
+					{
+						label: 'Version',
+						property: 'Version',
+						type: EdmType.String
+					},
+					{
+						label: 'Price',
+						property: ['SrvcCst', 'Currency'],
+						type: EdmType.String,
+						template: '{0}, {1}'
+					},
+					{
+						label: 'Created By',
+						property: 'Email',
+						type: EdmType.String
+					},
+					{
+						label: 'Created on',
+						property: 'LastChangedOn',
+						type: EdmType.Date
+					},
+					{
+						label: 'Comment',
+						property: 'Comments',
+						type: EdmType.String
+					}
+				];
+				this.onCommonExport(oRowBinding, aCols, sFileName);
 			}
+			
 
 		});
 	});

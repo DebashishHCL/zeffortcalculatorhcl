@@ -39,6 +39,7 @@
 							<content>
 								<Title text="" level="H2"/>
 								<ToolbarSpacer />
+								<Button icon="sap-icon://excel-attachment" press=".onSearchResultExport"/>
 							</content>
 						</OverflowToolbar>
 					</headerToolbar>
