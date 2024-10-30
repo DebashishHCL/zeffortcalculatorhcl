@@ -1,9 +1,10 @@
 sap.ui.define([
     "./BaseController",
     "com/zeffortcalculatorhcl/model/models",
-    "../utils/formatter"
+    "../utils/formatter",
+    "sap/ui/model/Filter", "sap/ui/model/FilterOperator"
 ],
-    function (BaseController, models, formatter) {
+    function (BaseController, models, formatter, Filter, FilterOperator) {
         "use strict";
 
         return BaseController.extend("com.zeffortcalculatorhcl.controller.Home", {
@@ -22,6 +23,22 @@ sap.ui.define([
                 if (this.getView().byId("Choice2").getSelected()) {
                     this.getRouter().navTo("Search", {}, false);
                 }
-            }
+            },
+            // onEmail: function () {
+            //     let oF4Help = this.callBackEnd("/zi_hcl_email", "GET", [], {}, {});
+			// 	oF4Help.then((oResponse) => {
+			// 		let result = oResponse.data.results;
+            //     })
+            // },
+            // onDownload: function () {
+            //     let aFilter = [];
+            //     aFilter.push(new Filter('opp_id', FilterOperator.EQ, "UM0000185"));
+            //     aFilter.push(new Filter('version', FilterOperator.EQ, "01"));
+            //     aFilter.push(new Filter('sap_app', FilterOperator.EQ, true));
+            //     let oDownload = this.callBackEnd("/zi_hcl_download", "GET", aFilter, {}, {});
+			// 	oDownload.then((oResponse) => {
+			// 		let result = oResponse.data.results;
+            //     })
+            // }
         });
     });

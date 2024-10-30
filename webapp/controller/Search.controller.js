@@ -352,7 +352,5 @@ sap.ui.define([
 				];
 				this.onCommonExport(oRowBinding, aCols, sFileName);
 			}
-			
-
 		});
 	});

@@ -160,6 +160,10 @@ sap.ui.define([
 
 			},
 			onCalculate: function () {
+				let userEmail = this.getOwnerModel("pgUiData").getProperty("/loggedInUserEmail")
+				let userId = this.getOwnerModel("pgUiData").getProperty("/loggedInUser")
+				this.getOwnerModel("oModelEstCal").setProperty("/Email", userEmail)
+				this.getOwnerModel("oModelEstCal").setProperty("/SuserId", userId)
 				let oData = this.getOwnerModel("oModelEstCal").getData();
 				if (oData.SsDbSize == "" || oData.NoOfCycles == "") {
 					MessageBox.error("Please provide mendatory data");

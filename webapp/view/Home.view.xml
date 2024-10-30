@@ -18,8 +18,8 @@
                         alignItems="Center"
                         justifyContent="Center" class="sapUiSmallMarginTop">
                         <RadioButtonGroup  columns="1" width="100%">
-                            <RadioButton id="Choice1" text="Create New Request" selected="true"/>
-                            <RadioButton id="Choice2" text="Search Old Request" />
+                            <RadioButton id="Choice1" text="{remotei18n>/H/CREATE}" selected="true"/>
+                            <RadioButton id="Choice2" text="{remotei18n>/H/Search}" />
                         </RadioButtonGroup>
                         
 			        </FlexBox>
@@ -28,6 +28,16 @@
                         justifyContent="Center" width="30%">
                         <Button type="Emphasized" press="onChoice"	text="Submit" />
 			        </FlexBox>
+                    <!-- <FlexBox
+                        alignItems="Center"
+                        justifyContent="Center" width="30%">
+                        <Button type="Emphasized" press="onEmail"	text="Trigger Email" />
+			        </FlexBox>
+                    <FlexBox
+                        alignItems="Center"
+                        justifyContent="Center" width="30%">
+                        <Button type="Emphasized" press="onDownload"	text="Download Excel" />
+			        </FlexBox> -->
                 </VBox>
                         
         </content>

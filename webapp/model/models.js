@@ -49,34 +49,46 @@ sap.ui.define([
                 return new JSONModel(oModelSelectedBaseLine);
             },
 
-            getlabelsPageWise: function (oData) {
+            getlabelsPageWise: function(oData){
                 let aPages = [];
                 let aFieldIds = []
                 oData.results.forEach(item => {
                     switch (item.PageId) {
                         case "DO":
-                            aFieldIds[item.FieldId] = item.Description;
-                            aPages["DO"] = aFieldIds;
-                            break;
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["DO"] =  aFieldIds;
+                        break;
+                        case "DT":
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["DT"] =  aFieldIds;
+                        break;
                         case "DP":
-                            aFieldIds[item.FieldId] = item.Description;
-                            aPages["DP"] = aFieldIds;
-                            break;
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["DP"] =  aFieldIds;
+                        break;
                         case "WP":
-                            aFieldIds[item.FieldId] = item.Description;
-                            aPages["WP"] = aFieldIds;
-                            break;
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["WP"] =  aFieldIds;
+                        break;
                         case "S":
-                            aFieldIds[item.FieldId] = item.Description;
-                            aPages["S"] = aFieldIds;
-                            break;
-
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["S"] =  aFieldIds;
+                        break;
+                        case "H":
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["H"] =  aFieldIds;
+                        break;
+                        case "PT":
+                            aFieldIds[item.FieldId] =  item.Description;
+                            aPages["PT"] =  aFieldIds;
+                        break;  
+                    
                         default:
                             break;
                     }
                 });
-                return new JSONModel(aPages);
-
+                console.log(aPages);
+                return new JSONModel(aPages); ;
             }
         };
 

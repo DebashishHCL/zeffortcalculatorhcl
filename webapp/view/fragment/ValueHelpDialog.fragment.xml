@@ -21,7 +21,7 @@
 					<fb:FilterGroupItem
 						groupName="__$INTERNAL$"
 						name="OpportunityId"
-						label="Opportunity ID"
+						label="{remotei18n>/S/OPP_ID}"
 						visibleInFilterBar="true">
 						<fb:control>
 							<m:Input name="OpportunityId" />
@@ -30,7 +30,7 @@
 					<fb:FilterGroupItem
 						groupName="__$INTERNAL$"
 						name="CustId"
-						label="Customer ID"
+						label="{remotei18n>/S/C_ID}"
 						visibleInFilterBar="true">
 						<fb:control>
 							<m:Input name="CustId" />
@@ -39,7 +39,7 @@
 					<fb:FilterGroupItem
 						groupName="__$INTERNAL$"
 						name="CustName"
-						label="Customer Name"
+						label="{remotei18n>/S/C_NAME}"
 						visibleInFilterBar="true">
 						<fb:control>
 							<m:Input name="CustName" />
@@ -48,7 +48,7 @@
 					<fb:FilterGroupItem
 						groupName="__$INTERNAL$"
 						name="LastChangedOn"
-						label="Created On">
+						label="{remotei18n>/S/CREATED_ON}">
 						<fb:control>
 							<m:Input name="LastChangedOn" />
 						</fb:control>
