@@ -32,8 +32,8 @@
                         alignItems="Center"
                         justifyContent="Center" width="30%">
                         <Button type="Emphasized" press="onEmail"	text="Trigger Email" />
-			        </FlexBox>
-                    <FlexBox
+			        </FlexBox> -->
+                    <!-- <FlexBox
                         alignItems="Center"
                         justifyContent="Center" width="30%">
                         <Button type="Emphasized" press="onDownload"	text="Download Excel" />
